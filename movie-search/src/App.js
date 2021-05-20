@@ -22,14 +22,17 @@ function App() {
     console.log(data)
   }
   //New array for Data
-  // const dataArray = async(random)=>{
-  //   const response = await fetch(
-  //     `http://www.omdbapi.com/?apikey=${apiKey}&t=${random}`
-  //   )
-  // }
+  const dataArray = async()=>{
+    let random = Math.floor(Math.random()*50)
+    const response = await fetch(
+      `http://www.omdbapi.com/?apikey=${apiKey}&t=${random}`
+    )
+    const data = await response.json();
+    setMovie(data)
+  }
   //Use Effect
-  React.useEffect(()=>{getMovie("Clueless")},[])
-  // React.useEffect(()=>{(dataArray)},[])
+  // React.useEffect(()=>{getMovie("Clueless")},[])
+  React.useEffect(()=>{dataArray()},[])
   return (
     <div className="App">
       <Form moviesearch={getMovie}/>
